@@ -1,3 +1,5 @@
+import BarChart from '@/components/BarChart';
+
 const getPokemon = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10');
     //await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -44,7 +46,22 @@ const getPokeData = async (data) => {
 const Home = async () => {
     const pokemon = await getPokemon();
     const pokeData = await getPokeData(pokemon);
+    console.log('pokeData', pokeData);
+
+    const data = {
+        fire: 12,
+        water: 32,
+        grass: 14,
+    };
+    const data2 = {
+        single: 4,
+        dual: 10,
+    };
+    // console.log(pokemon);
     return (
+        <div>
+            <BarChart barData={pokeData.typesSum} />
+        </div>
     );
 };
 

@@ -24,6 +24,18 @@ interface BarData {
         fire: number;
         water: number;
         grass: number;
+        normal: number;
+        electric: number;
+        ice: number;
+        fighting: number;
+        poison: number;
+        ground: number;
+        flying: number;
+        psychic: number;
+        bug: number;
+        rock: number;
+        ghost: number;
+        dragon: number;
     };
 }
 const BarChart = ({ barData }: BarData) => {
@@ -48,7 +60,7 @@ const BarChart = ({ barData }: BarData) => {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Users Gained between 2016-2020',
+                            text: 'Sum of Pokemon Types',
                         },
                         legend: {
                             display: false,
