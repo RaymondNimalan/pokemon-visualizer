@@ -1,6 +1,6 @@
 'use client';
 import {
-    BarElement,
+    ArcElement,
     CategoryScale,
     Chart as ChartJS,
     Legend,
@@ -8,32 +8,31 @@ import {
     Title,
     Tooltip,
 } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
-    BarElement,
+    ArcElement,
     Title,
     Tooltip,
     Legend
 );
 
 interface PieData {
-    pieData: {
-        single: number;
-        dual: number;
-    };
+    pieData: [single: number, dual: number];
 }
 const PieChart = ({ pieData }: PieData) => {
     console.log(pieData);
+    // const chartValues = Object.values(pieData);
+    // console.log('chartValues', chartValues);
 
     const Data = {
-        labels: ['1', '2'],
+        labels: ['single', 'dual'],
         datasets: [
             {
                 label: 'Pokemon Types',
-                data: [0.2, 0.8],
+                data: pieData,
                 borderColor: 'blue',
                 borderWidth: 2,
             },
@@ -41,13 +40,13 @@ const PieChart = ({ pieData }: PieData) => {
     };
     return (
         <div>
-            <Pie
+            <Doughnut
                 data={Data}
                 options={{
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Users Gained between 2016-2020',
+                            text: 'Percentage of Single and Double Typed Pokemon',
                         },
                         legend: {
                             display: false,

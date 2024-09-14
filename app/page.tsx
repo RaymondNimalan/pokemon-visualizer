@@ -1,4 +1,5 @@
 import BarChart from '@/components/BarChart';
+import PieChart from '@/components/PieChart';
 
 const getPokemon = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10');
@@ -61,6 +62,7 @@ const Home = async () => {
     return (
         <div>
             <BarChart barData={pokeData.typesSum} />
+            <PieChart pieData={[pokeData.singleType, pokeData.doubleType]} />
         </div>
     );
 };
