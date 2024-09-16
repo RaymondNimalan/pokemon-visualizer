@@ -52,8 +52,10 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
                                 'justity-center',
                                 'items-center',
                                 'text-[24px]',
+
+                                'text-black',
                             ],
-                            input: ['h-[32px]'],
+                            input: ['h-[32px]', 'rounded-lg'],
                         }}
                         placeholder='Type to search...'
                         startContent={<FaSearch />}
@@ -67,11 +69,6 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
                     </div>
                 ))}
             </div>
-            {/* <div>
-                {pokeData.map((pokemon) => (
-                    <PokeCard key={pokeData.id} pokeData={pokemon} />
-                ))}
-            </div> */}
         </div>
     );
 };
