@@ -23,15 +23,15 @@ interface PieData {
     pieData: [single: number, dual: number];
 }
 const PieChart = ({ pieData }: PieData) => {
-    console.log(pieData);
+    console.log('piedata', pieData);
     // const chartValues = Object.values(pieData);
     // console.log('chartValues', chartValues);
 
     const Data = {
-        labels: ['single', 'dual'],
+        labels: ['Single', 'Dual'],
         datasets: [
             {
-                label: 'Pokemon Types',
+                label: 'Types',
                 data: pieData,
                 borderColor: 'black',
                 backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 205, 86)'],
