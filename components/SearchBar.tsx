@@ -16,6 +16,13 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     useEffect(() => {
         setPokemonList(pokeData);
     }, []);
+    useEffect(() => {
+        const filtered = pokemonList.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(searchedPokemon.toLowerCase())
+        );
+        setFilteredList(filtered);
+    }, [searchedPokemon, pokemonList]);
+
     return (
         <div className='w-full flex flex-col w-[600px] items-center'>
         </div>
