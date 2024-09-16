@@ -19,6 +19,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     useEffect(() => {
         setPokemonList(pokeData);
     }, []);
+
     useEffect(() => {
         const filtered = pokemonList.filter((pokemon) =>
             pokemon.name.toLowerCase().includes(searchedPokemon.toLowerCase())
@@ -26,10 +27,14 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
         setFilteredList(filtered);
     }, [searchedPokemon, pokemonList]);
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchedPokemon(e.target.value);
+    };
+
     return (
-        <div className='w-full flex flex-col w-[600px] items-center'>
-            <div className='flex flex-col gap-4 w-fullitems-center'>
-                <div className='flex p-4 w-[400px]'>
+        <div className='w-full flex flex-1 flex-col w-[600px] items-center sm:overflow-y-scroll sm:h-[550px]'>
+            <div className='flex flex-col gap-4 w-full items-center'>
+                <div className='flex p-4 max-w-[400px]'>
                     <Input
                         type='text'
                         value={searchedPokemon}
@@ -54,9 +59,11 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
                     />
                 </div>
             </div>
-            <div className='w-full flex-wrap flex p-4 justify-evenly'>
+            <div className='w-full flex-wrap flex p-4 justify-evenly '>
                 {filteredList.map((pokemon) => (
-                    <PokeCard key={pokemon.id} pokeData={pokemon} />
+                    <div className='p-4' key={pokemon.id}>
+                        <PokeCard pokeData={pokemon} />
+                    </div>
                 ))}
             </div>
             {/* <div>
