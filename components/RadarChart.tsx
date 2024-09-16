@@ -19,14 +19,9 @@ ChartJS.register(
 );
 
 interface BaseStats {
-    stats: [
-        {
-            base_stat: number;
-            stat: { name: string };
-        }
-    ];
+    stats: { base_stat: number; stat: { name: string } }[];
 }
-const RadarChart = (stats: BaseStats) => {
+const RadarChart = ({ stats }: BaseStats) => {
     console.log('stats from radar chart', stats);
     // const stats = [
     //     {
@@ -79,7 +74,7 @@ const RadarChart = (stats: BaseStats) => {
     //     },
     // ];
 
-    const statsData = stats.stats.map((stat) => {
+    const statsData = stats.map((stat) => {
         return stat.base_stat;
     });
 

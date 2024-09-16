@@ -5,19 +5,44 @@ import PieChart from './PieChart';
 import PokeStats from './PokeStats';
 import SearchBar from './SearchBar';
 
-interface PokeCardProps {
-    pokeData: object;
+export interface PokemonData {
+    id: number;
+    name: string;
+    height: number;
+    weight: number;
+    abilities: { ability: { name: string; url: string } }[];
+    types: { type: { name: string } }[];
+    stats: { base_stat: number; stat: { name: string } }[];
+    sprites: { other: { dream_world: { front_default: string } } };
+}
+
+interface PokeDataProps {
+    pokeData: {
+        pokemonData: PokemonData[];
+        typeData: {
+            typesSum: {
+                [key: string]: number;
+            };
+            singleType: number;
+            doubleType: number;
+        };
+    };
 }
 interface PokemonContextType {
     currPokemon: object | null;
     setCurrPokemon: (pokemon: object | null) => void;
 }
 
-export const MyContext = createContext<PokemonContextType | undefined>(
-    undefined
-);
+// export const MyContext = createContext<PokemonContextType | undefined>(
+//     undefined
+// );
 
-const Dashboard = ({ pokeData }: PokeCardProps) => {
+export const MyContext = createContext<PokemonContextType>({
+    currPokemon: null,
+    setCurrPokemon: () => {},
+});
+
+const Dashboard = ({ pokeData }: PokeDataProps) => {
     const [currPokemon, setCurrPokemon] = useState<object | null>(null);
 
     useEffect(() => {

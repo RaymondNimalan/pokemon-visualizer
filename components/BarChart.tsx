@@ -20,23 +20,7 @@ ChartJS.register(
 );
 
 interface BarData {
-    barData: {
-        fire: number;
-        water: number;
-        grass: number;
-        normal: number;
-        electric: number;
-        ice: number;
-        fighting: number;
-        poison: number;
-        ground: number;
-        flying: number;
-        psychic: number;
-        bug: number;
-        rock: number;
-        ghost: number;
-        dragon: number;
-    };
+    barData: { [key: string]: number };
 }
 const pokemonTypeColors: { [key: string]: string } = {
     fire: '#F08030',

@@ -2,18 +2,18 @@
 import { Input } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { PokemonData } from './Dashboard';
 import PokeCard from './PokeCard';
 
 interface PokeCardProps {
-    pokeData: [];
+    pokeData: PokemonData[];
 }
 
-interface Pokemon {}
 const SearchBar = ({ pokeData }: PokeCardProps) => {
     const [searchedPokemon, setSearchedPokemon] = useState('');
-    const [error, setError] = useState(false);
-    const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
-    const [filteredList, setFilteredList] = useState<Pokemon[]>([]);
+    // const [error, setError] = useState(false);
+    const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
+    const [filteredList, setFilteredList] = useState<PokemonData[]>([]);
 
     console.log(pokeData);
 
@@ -23,7 +23,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
 
     useEffect(() => {
         const filtered = pokemonList.filter((pokemon) =>
-            pokemon.name.toLowerCase().includes(searchedPokemon.toLowerCase())
+            pokemon?.name?.toLowerCase().includes(searchedPokemon.toLowerCase())
         );
         setFilteredList(filtered);
     }, [searchedPokemon, pokemonList]);
@@ -33,7 +33,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     };
 
     return (
-        <div className='w-full flex flex-col w-[600px] items-center sm:max-h-[350px]'>
+        <div className='w-full flex flex-col w-[600px] items-center max-h-[600px] sm:max-h-[350px]'>
             <div className='flex flex-col gap-4 w-full items-center'>
                 <div className='flex p-4 max-w-[400px]'>
                     <Input
@@ -62,7 +62,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
                     />
                 </div>
             </div>
-            <div className='w-full flex-wrap flex p-4 justify-evenly sm:overflow-y-scroll'>
+            <div className='w-full flex-wrap flex p-4 justify-evenly overflow-y-scroll'>
                 {filteredList.map((pokemon) => (
                     <div className='p-4' key={pokemon.id}>
                         <PokeCard pokeData={pokemon} />

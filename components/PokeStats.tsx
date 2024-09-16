@@ -13078,7 +13078,7 @@ const pokemon = {
 };
 const PokeStats = () => {
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(pokemon);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
     const context = useContext(MyContext);
 
     const { currPokemon } = context;
@@ -13089,11 +13089,15 @@ const PokeStats = () => {
 
     useEffect(() => {
         if (currPokemon) {
-            setPokemonData(currPokemon);
+            setPokemonData(currPokemon as PokemonData);
         }
     }, [currPokemon]);
 
     // const { name, height, weight, abilities, types, stats } = pokemonData;
+
+    if (!pokemonData) {
+        return <div>No data available</div>;
+    }
 
     const imageUrl = pokemonData?.sprites.other.dream_world.front_default;
 
@@ -13119,8 +13123,8 @@ const PokeStats = () => {
     };
 
     const typeColor =
-        pokemonData?.types.length > 0
-            ? pokemonTypeColors[pokemonData?.types[0].type.name]
+        pokemonData.types.length > 0
+            ? pokemonTypeColors[pokemonData.types[0].type.name]
             : 'bg-gray-300';
 
     return (

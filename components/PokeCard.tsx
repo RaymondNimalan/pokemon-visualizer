@@ -1,26 +1,25 @@
 'use client';
 import { useContext } from 'react';
-import { MyContext } from './Dashboard';
+import { MyContext, PokemonData } from './Dashboard';
 interface PokeCardProps {
-    pokeData: [];
+    pokeData: PokemonData;
 }
-const PokeCard = (pokeData: PokeCardProps) => {
+const PokeCard = ({ pokeData }: PokeCardProps) => {
     const context = useContext(MyContext);
     const { setCurrPokemon } = context;
-    const data = pokeData.pokeData;
     // console.log('inside card', data);
     // console.log(data.sprites.other.dream_world.front_default);
-    const imageUrl = data.sprites.other.dream_world.front_default;
-    const name = data.name;
+    const imageUrl = pokeData?.sprites.other.dream_world.front_default;
+    const name = pokeData?.name;
 
-    const handleCardClick = (pokemon) => {
+    const handleCardClick = (pokemon: object | null) => {
         console.log('clicked', pokemon);
         setCurrPokemon(pokemon);
     };
     return (
         <div
             className='bg-white w-[176px] h-[220px] rounded-lg items-center flex flex-col cursor-pointer'
-            onClick={() => handleCardClick(data)}
+            onClick={() => handleCardClick(pokeData)}
         >
             <div className='size-full rounded-lg items-center flex flex-col border-4 border-black'>
                 <div className='flex h-[175px] justify-center items-center'>
