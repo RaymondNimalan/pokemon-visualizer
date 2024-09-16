@@ -41,12 +41,17 @@ interface BarData {
 const BarChart = ({ barData }: BarData) => {
     console.log(barData);
 
+    const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
+
+    const chartLabels = sortedTypeData.map((entry) => entry[0]);
+    const chartValues = sortedTypeData.map((entry) => entry[1]);
+
     const Data = {
-        labels: ['1', '2', '3'],
+        labels: chartLabels,
         datasets: [
             {
                 label: 'Pokemon Types',
-                data: [1, 2, 3],
+                data: chartValues,
                 borderColor: 'blue',
                 borderWidth: 2,
             },
