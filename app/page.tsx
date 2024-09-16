@@ -3,7 +3,7 @@
 import Dashboard from '@/components/Dashboard';
 
 const getPokemon = async () => {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
     //await new Promise((resolve) => setTimeout(resolve, 1000));
     const data = await response.json();
     return data.results;

@@ -39,14 +39,14 @@ const PieChart = ({ pieData }: PieData) => {
         ],
     };
     return (
-        <div>
+        <div className='flex'>
             <Doughnut
                 data={Data}
                 options={{
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Percentage of Single and Double Typed Pokemon',
+                            text: 'Single and Double Typed Pokemon',
                         },
                         legend: {
                             display: false,
