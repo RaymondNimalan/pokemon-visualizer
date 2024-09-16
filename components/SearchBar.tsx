@@ -14,6 +14,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     const [error, setError] = useState(false);
     const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
     const [filteredList, setFilteredList] = useState<Pokemon[]>([]);
+
     console.log(pokeData);
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     };
 
     return (
-        <div className='w-full flex flex-1 flex-col w-[600px] items-center sm:overflow-y-scroll sm:h-[550px]'>
+        <div className='w-full flex flex-col w-[600px] items-center sm:max-h-[350px]'>
             <div className='flex flex-col gap-4 w-full items-center'>
                 <div className='flex p-4 max-w-[400px]'>
                     <Input
@@ -59,7 +60,7 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
                     />
                 </div>
             </div>
-            <div className='w-full flex-wrap flex p-4 justify-evenly '>
+            <div className='w-full flex-wrap flex p-4 justify-evenly sm:overflow-y-scroll'>
                 {filteredList.map((pokemon) => (
                     <div className='p-4' key={pokemon.id}>
                         <PokeCard pokeData={pokemon} />
