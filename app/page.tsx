@@ -1,5 +1,3 @@
-// import BarChart from '@/components/BarChart';
-// import PieChart from '@/components/PieChart';
 import Dashboard from '@/components/Dashboard';
 
 const getPokemon = async () => {
@@ -10,7 +8,6 @@ const getPokemon = async () => {
 };
 
 const getPokeData = async (data) => {
-    console.log('pokedata', data);
     const pokePromises = data.map(
         async (pokemon: { name: string; url: string }) => {
             const response = await fetch(pokemon.url);
@@ -48,29 +45,12 @@ const getPokeData = async (data) => {
 
 const Home = async () => {
     const pokemon = await getPokemon();
-    // console.log('pokemon', pokemon);
 
     const pokeData = await getPokeData(pokemon);
-    console.log('pokeData', pokeData);
 
-    const data = {
-        fire: 12,
-        water: 32,
-        grass: 14,
-    };
-    const data2 = {
-        single: 4,
-        dual: 10,
-    };
-    // console.log(pokemon);
     return (
         <div className='flex h-[100vh] w-full'>
             <Dashboard pokeData={pokeData} />
-            {/* <SearchBar pokeData={pokeData} />
-            <PokeStats /> */}
-            {/* <PokeCard pokeData={pokeData} /> */}
-            {/* <BarChart barData={pokeData.typesSum} />
-            <PieChart pieData={[pokeData.singleType, pokeData.doubleType]} /> */}
         </div>
     );
 };
