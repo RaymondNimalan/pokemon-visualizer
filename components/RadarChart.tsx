@@ -110,9 +110,9 @@ const RadarChart = () => {
     };
 
     return (
-        <div>
+        <>
             <Radar data={data} options={options} />
-        </div>
+        </>
     );
 };
 
