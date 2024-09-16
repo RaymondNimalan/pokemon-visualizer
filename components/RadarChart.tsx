@@ -98,6 +98,15 @@ const RadarChart = () => {
     };
 
     const options = {
+        scales: {
+            r: {
+                min: 0,
+                max: 150,
+                ticks: {
+                    stepSize: 25,
+                },
+            },
+        },
     };
 
     return (
