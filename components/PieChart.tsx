@@ -33,7 +33,8 @@ const PieChart = ({ pieData }: PieData) => {
             {
                 label: 'Pokemon Types',
                 data: pieData,
-                borderColor: 'blue',
+                borderColor: 'black',
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 205, 86)'],
                 borderWidth: 2,
             },
         ],
