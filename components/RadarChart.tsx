@@ -19,66 +19,67 @@ ChartJS.register(
 );
 
 interface BaseStats {
-    stat: [
+    stats: [
         {
             base_stat: number;
             stat: { name: string };
         }
     ];
 }
-const RadarChart = () => {
-    const stats = [
-        {
-            base_stat: 80,
-            effort: 0,
-            stat: {
-                name: 'hp',
-                url: 'https://pokeapi.co/api/v2/stat/1/',
-            },
-        },
-        {
-            base_stat: 82,
-            effort: 0,
-            stat: {
-                name: 'attack',
-                url: 'https://pokeapi.co/api/v2/stat/2/',
-            },
-        },
-        {
-            base_stat: 83,
-            effort: 0,
-            stat: {
-                name: 'defense',
-                url: 'https://pokeapi.co/api/v2/stat/3/',
-            },
-        },
-        {
-            base_stat: 100,
-            effort: 2,
-            stat: {
-                name: 'special-attack',
-                url: 'https://pokeapi.co/api/v2/stat/4/',
-            },
-        },
-        {
-            base_stat: 100,
-            effort: 1,
-            stat: {
-                name: 'special-defense',
-                url: 'https://pokeapi.co/api/v2/stat/5/',
-            },
-        },
-        {
-            base_stat: 80,
-            effort: 0,
-            stat: {
-                name: 'speed',
-                url: 'https://pokeapi.co/api/v2/stat/6/',
-            },
-        },
-    ];
+const RadarChart = (stats: BaseStats) => {
+    console.log('stats from radar chart', stats);
+    // const stats = [
+    //     {
+    //         base_stat: 80,
+    //         effort: 0,
+    //         stat: {
+    //             name: 'hp',
+    //             url: 'https://pokeapi.co/api/v2/stat/1/',
+    //         },
+    //     },
+    //     {
+    //         base_stat: 82,
+    //         effort: 0,
+    //         stat: {
+    //             name: 'attack',
+    //             url: 'https://pokeapi.co/api/v2/stat/2/',
+    //         },
+    //     },
+    //     {
+    //         base_stat: 83,
+    //         effort: 0,
+    //         stat: {
+    //             name: 'defense',
+    //             url: 'https://pokeapi.co/api/v2/stat/3/',
+    //         },
+    //     },
+    //     {
+    //         base_stat: 100,
+    //         effort: 2,
+    //         stat: {
+    //             name: 'special-attack',
+    //             url: 'https://pokeapi.co/api/v2/stat/4/',
+    //         },
+    //     },
+    //     {
+    //         base_stat: 100,
+    //         effort: 1,
+    //         stat: {
+    //             name: 'special-defense',
+    //             url: 'https://pokeapi.co/api/v2/stat/5/',
+    //         },
+    //     },
+    //     {
+    //         base_stat: 80,
+    //         effort: 0,
+    //         stat: {
+    //             name: 'speed',
+    //             url: 'https://pokeapi.co/api/v2/stat/6/',
+    //         },
+    //     },
+    // ];
 
-    const statsData = stats.map((stat) => {
+    const statsData = stats.stats.map((stat) => {
         return stat.base_stat;
     });
 

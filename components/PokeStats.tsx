@@ -13192,7 +13192,7 @@ const PokeStats = () => {
                         ))}
                     </div>
                     <div className='flex-1 flex justify-center items-end'>
-                        <RadarChart />
+                        <RadarChart stats={pokemonData?.stats} />
                     </div>
                 </div>
             </div>
