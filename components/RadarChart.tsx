@@ -87,7 +87,7 @@ const RadarChart = ({ stats }: BaseStats) => {
                 label: 'Pokemon',
                 data: statsData,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                borderColor: '#ef4444',
                 borderWidth: 1,
             },
         ],

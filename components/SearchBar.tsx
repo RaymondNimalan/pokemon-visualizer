@@ -15,8 +15,6 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
     const [filteredList, setFilteredList] = useState<PokemonData[]>([]);
 
-    console.log(pokeData);
-
     useEffect(() => {
         setPokemonList(pokeData);
     }, []);

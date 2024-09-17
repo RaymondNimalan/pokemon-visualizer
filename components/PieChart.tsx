@@ -34,7 +34,7 @@ const PieChart = ({ pieData }: PieData) => {
                 label: 'Types',
                 data: pieData,
                 borderColor: 'black',
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 205, 86)'],
+                backgroundColor: ['#ef4444', '#eab308'],
                 borderWidth: 2,
             },
         ],

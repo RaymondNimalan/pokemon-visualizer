@@ -13131,7 +13131,7 @@ const PokeStats = () => {
         <div
             className={`flex flex-col w-full max-w-[550px] p-4 rounded-lg shadow-lg ${typeColor} text-white`}
         >
-            <h2 className='text-2xl font-bold text-center capitalize'>
+            <h2 className='text-2xl font-bold text-center capitalize mb-4'>
                 {pokemonData?.name}
             </h2>
             <div className='flex flex-col sm:flex-row gap-4'>
@@ -13180,9 +13180,12 @@ const PokeStats = () => {
                 </div>
             </div>
             <div className='w-full p-2 bg-white rounded-lg shadow-inner text-gray-800 mt-4'>
-                <h3 className='text-sm font-semibold mb-2'>Base Stats</h3>
+                {/* <h3 className='text-sm font-semibold mb-2'>Base Stats</h3> */}
                 <div className='flex flex-col sm:flex-row gap-4'>
                     <div className='flex-1 flex flex-col gap-2'>
+                        <h3 className='text-sm font-semibold mb-2'>
+                            Base Stats
+                        </h3>
                         {pokemonData?.stats.map((stat, index) => (
                             <div
                                 key={index}
@@ -13195,7 +13198,7 @@ const PokeStats = () => {
                             </div>
                         ))}
                     </div>
-                    <div className='flex-1 flex justify-center items-end'>
+                    <div className='flex-1 flex justify-center items-end max-w-[250px]'>
                         <RadarChart stats={pokemonData?.stats} />
                     </div>
                 </div>
