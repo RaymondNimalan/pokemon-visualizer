@@ -51,22 +51,11 @@ const BarChart = ({ chartValues, chartLabels }: BarData) => {
     useEffect(() => {
         setLabels(chartLabels);
         setValues(chartValues);
-        console.log('labels', labels);
-        console.log('values', values);
     }, []);
 
     useEffect(() => {
         handleToggle();
     }, [togglePercentage]);
-
-    // const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
-
-    // const chartLabels = sortedTypeData.map((entry) => entry[0]);
-    // const chartValues = sortedTypeData.map((entry) => entry[1]);
-
-    // const borderColor = labels?.map(
-    //     (label) => pokemonTypeColors[label] || 'gray'
-    // );
 
     if (!labels || !values) {
         return <div>Loading...</div>;

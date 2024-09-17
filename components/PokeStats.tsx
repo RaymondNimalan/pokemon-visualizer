@@ -13093,8 +13093,6 @@ const PokeStats = () => {
         }
     }, [currPokemon]);
 
-    // const { name, height, weight, abilities, types, stats } = pokemonData;
-
     if (!pokemonData) {
         return <div>No data available</div>;
     }
@@ -13180,7 +13178,6 @@ const PokeStats = () => {
                 </div>
             </div>
             <div className='w-full p-2 bg-white rounded-lg shadow-inner text-gray-800 mt-4'>
-                {/* <h3 className='text-sm font-semibold mb-2'>Base Stats</h3> */}
                 <div className='flex flex-col sm:flex-row gap-4'>
                     <div className='flex-1 flex flex-col gap-2'>
                         <h3 className='text-sm font-semibold mb-2'>

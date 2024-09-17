@@ -23,10 +23,6 @@ interface PieData {
     pieData: [single: number, dual: number];
 }
 const PieChart = ({ pieData }: PieData) => {
-    console.log('piedata', pieData);
-    // const chartValues = Object.values(pieData);
-    // console.log('chartValues', chartValues);
-
     const Data = {
         labels: ['Single', 'Dual'],
         datasets: [

@@ -1,6 +1,6 @@
 'use client';
 import { Checkbox } from '@nextui-org/react';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
 import PokeStats from './PokeStats';
@@ -36,10 +36,6 @@ interface PokemonContextType {
     setTogglePercentage: (value: boolean) => void;
 }
 
-// export const MyContext = createContext<PokemonContextType | undefined>(
-//     undefined
-// );
-
 export const MyContext = createContext<PokemonContextType>({
     currPokemon: null,
     setCurrPokemon: () => {},
@@ -51,21 +47,12 @@ const Dashboard = ({ pokeData }: PokeDataProps) => {
     const [currPokemon, setCurrPokemon] = useState<object | null>(null);
     const [togglePercentage, setTogglePercentage] = useState(false);
 
-    useEffect(() => {
-        console.log(togglePercentage);
-    }, [togglePercentage]);
-
     const barData = pokeData.typeData.typesSum;
-
-    console.log('bar data', barData);
 
     const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
 
     const chartLabels = sortedTypeData.map((entry) => entry[0]);
     const chartValues = sortedTypeData.map((entry) => entry[1]);
-
-    console.log('chart labels', chartLabels);
-    console.log('chart val', chartValues);
 
     return (
         <MyContext.Provider

@@ -31,30 +31,14 @@ const SearchBar = ({ pokeData }: PokeCardProps) => {
     };
 
     return (
-        <div className='w-full flex flex-col w-[600px] items-center max-h-[600px] sm:max-h-[350px]'>
+        <div className='flex flex-col w-full items-center max-h-[600px] sm:max-h-[350px]'>
             <div className='flex flex-col gap-4 w-full items-center'>
                 <div className='flex p-4 max-w-[400px]'>
                     <Input
                         type='text'
                         value={searchedPokemon}
-                        // onChange={(e) => setSearchedPokemon(e.target.value)}
                         onChange={handleInputChange}
-                        // isClearable
                         radius='lg'
-                        classNames={{
-                            innerWrapper: [
-                                'flex',
-                                'flex-row',
-                                'gap-4',
-                                'w-full',
-                                'justity-center',
-                                'items-center',
-                                'text-[24px]',
-
-                                'text-black',
-                            ],
-                            input: ['h-[32px]', 'rounded-lg'],
-                        }}
                         placeholder='Type to search...'
                         startContent={<FaSearch />}
                     />

@@ -7,13 +7,10 @@ interface PokeCardProps {
 const PokeCard = ({ pokeData }: PokeCardProps) => {
     const context = useContext(MyContext);
     const { setCurrPokemon } = context;
-    // console.log('inside card', data);
-    // console.log(data.sprites.other.dream_world.front_default);
     const imageUrl = pokeData?.sprites.other.dream_world.front_default;
     const name = pokeData?.name;
 
     const handleCardClick = (pokemon: object | null) => {
-        console.log('clicked', pokemon);
         setCurrPokemon(pokemon);
     };
     return (

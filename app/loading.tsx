@@ -1,6 +1,5 @@
 import './loading.css';
 const Loading = () => {
-    // return <p>Loading Data...</p>;
     return (
         <div className='container'>
             <div className='image-container'>
