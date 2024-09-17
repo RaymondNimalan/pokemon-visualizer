@@ -3,7 +3,11 @@ const Loading = () => {
     return (
         <div className='container'>
             <div className='image-container'>
-                <img src='/pokemon-logo.png' alt='pokemon title' />
+                <img
+                    src='/pokemon-logo.png'
+                    alt='pokemon title'
+                    className='title'
+                />
             </div>
 
             <div className='poke_box'>
