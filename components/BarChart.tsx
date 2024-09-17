@@ -8,7 +8,9 @@ import {
     Title,
     Tooltip,
 } from 'chart.js';
+import { useContext, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { MyContext } from './Dashboard';
 
 ChartJS.register(
     CategoryScale,
@@ -20,7 +22,8 @@ ChartJS.register(
 );
 
 interface BarData {
-    barData: { [key: string]: number };
+    chartLabels: string[];
+    chartValues: number[];
 }
 const pokemonTypeColors: { [key: string]: string } = {
     fire: '#F08030',
@@ -39,24 +42,65 @@ const pokemonTypeColors: { [key: string]: string } = {
     ghost: '#705898',
     dragon: '#7038F8',
 };
-const BarChart = ({ barData }: BarData) => {
-    console.log(barData);
+const BarChart = ({ chartValues, chartLabels }: BarData) => {
+    const [labels, setLabels] = useState<string[]>([]);
+    const [values, setValues] = useState<number[]>([]);
+    const context = useContext(MyContext);
+    const { togglePercentage } = context;
 
-    const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
+    useEffect(() => {
+        setLabels(chartLabels);
+        setValues(chartValues);
+        console.log('labels', labels);
+        console.log('values', values);
+    }, []);
 
-    const chartLabels = sortedTypeData.map((entry) => entry[0]);
-    const chartValues = sortedTypeData.map((entry) => entry[1]);
+    useEffect(() => {
+        handleToggle();
+    }, [togglePercentage]);
 
-    const borderColor = chartLabels.map(
-        (label) => pokemonTypeColors[label] || 'gray'
-    );
+    // const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
+
+    // const chartLabels = sortedTypeData.map((entry) => entry[0]);
+    // const chartValues = sortedTypeData.map((entry) => entry[1]);
+
+    // const borderColor = labels?.map(
+    //     (label) => pokemonTypeColors[label] || 'gray'
+    // );
+
+    if (!labels || !values) {
+        return <div>Loading...</div>;
+    }
+
+    const borderColor =
+        labels.map((label) => pokemonTypeColors[label] || 'gray') || [];
+
+    const convertToPercent = () => {
+        const sum = values.reduce(
+            (accumulator, current) => accumulator + current
+        );
+
+        const percentValues = values.map((val) => {
+            return (val / sum) * 100;
+        });
+
+        setValues(percentValues);
+    };
+
+    const handleToggle = () => {
+        if (togglePercentage) {
+            return convertToPercent();
+        } else {
+            return setValues(chartValues);
+        }
+    };
 
     const Data = {
         labels: chartLabels,
         datasets: [
             {
                 label: 'Pokemon Types',
-                data: chartValues,
+                data: values,
                 borderColor: borderColor,
                 backgroundColor: borderColor.map((color) => `${color}80`),
                 borderWidth: 2,
@@ -72,7 +116,9 @@ const BarChart = ({ barData }: BarData) => {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Sum of Pokemon Types',
+                            text: togglePercentage
+                                ? 'Percent of Pokemon Types'
+                                : 'Sum of Pokemon Types',
                         },
                         legend: {
                             display: false,

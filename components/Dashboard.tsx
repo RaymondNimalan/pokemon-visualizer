@@ -1,4 +1,5 @@
 'use client';
+import { Checkbox } from '@nextui-org/react';
 import { createContext, useEffect, useState } from 'react';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
@@ -31,6 +32,8 @@ interface PokeDataProps {
 interface PokemonContextType {
     currPokemon: object | null;
     setCurrPokemon: (pokemon: object | null) => void;
+    togglePercentage: boolean;
+    setTogglePercentage: (value: boolean) => void;
 }
 
 // export const MyContext = createContext<PokemonContextType | undefined>(
@@ -40,23 +43,66 @@ interface PokemonContextType {
 export const MyContext = createContext<PokemonContextType>({
     currPokemon: null,
     setCurrPokemon: () => {},
+    togglePercentage: false,
+    setTogglePercentage: () => {},
 });
 
 const Dashboard = ({ pokeData }: PokeDataProps) => {
     const [currPokemon, setCurrPokemon] = useState<object | null>(null);
+    const [togglePercentage, setTogglePercentage] = useState(false);
 
     useEffect(() => {
-        console.log(currPokemon);
-    }, [currPokemon]);
+        console.log(togglePercentage);
+    }, [togglePercentage]);
+
+    const barData = pokeData.typeData.typesSum;
+
+    console.log('bar data', barData);
+
+    const sortedTypeData = Object.entries(barData).sort((a, b) => b[1] - a[1]);
+
+    const chartLabels = sortedTypeData.map((entry) => entry[0]);
+    const chartValues = sortedTypeData.map((entry) => entry[1]);
+
+    console.log('chart labels', chartLabels);
+    console.log('chart val', chartValues);
 
     return (
-        <MyContext.Provider value={{ currPokemon, setCurrPokemon }}>
+        <MyContext.Provider
+            value={{
+                currPokemon,
+                setCurrPokemon,
+                togglePercentage,
+                setTogglePercentage,
+            }}
+        >
             <div className='flex w-full gap-6 p-8 justify-center items-center flex-col sm:flex-row'>
                 <div className='flex flex-col justify-center items-center w-[450px] gap-y-4'>
-                    <div className='flex-col p-4 bg-blue-600 rounded-lg h-[350px] gap-y-4'>
-                        <div className='flex flex-col'>
+                    <div className='flex-col p-4 rounded-lg h-[350px] gap-y-4 bg-red-500'>
+                        <div className='flex flex-col '>
                             <div className='flex justify-between w-full h-[150px]'>
-                                <h2>Pokemon Types</h2>
+                                <div className='flex flex-col'>
+                                    <h2 className='font-bold mb-4'>
+                                        Pokemon Types
+                                    </h2>
+                                    <div>
+                                        <Checkbox
+                                            defaultSelected
+                                            color='primary'
+                                            size='lg'
+                                            isSelected={togglePercentage}
+                                            onValueChange={setTogglePercentage}
+                                            // onChange={(e) =>
+                                            //     setTogglePercentage(
+                                            //         e.target.checked
+                                            //     )
+                                            // }
+                                        >
+                                            Percent
+                                        </Checkbox>
+                                    </div>
+                                </div>
+
                                 <div className='flex bg-white rounded-lg w-[150px] p-4'>
                                     <PieChart
                                         pieData={[
@@ -68,7 +114,10 @@ const Dashboard = ({ pokeData }: PokeDataProps) => {
                             </div>
                         </div>
                         <div className='flex bg-white rounded-lg w-[300px] mt-4'>
-                            <BarChart barData={pokeData.typeData.typesSum} />
+                            <BarChart
+                                chartLabels={chartLabels}
+                                chartValues={chartValues}
+                            />
                         </div>
                     </div>
                     <div className='bg-yellow-500 rounded-lg'>
