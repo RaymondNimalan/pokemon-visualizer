@@ -76,7 +76,7 @@ const Dashboard = ({ pokeData }: PokeDataProps) => {
                 setTogglePercentage,
             }}
         >
-            <div className='flex w-full gap-6 p-8 justify-center items-center flex-col sm:flex-row'>
+            <div className='flex w-full gap-6 p-8 justify-center items-center flex-col md:flex-row'>
                 <div className='flex flex-col justify-center items-center w-[450px] gap-y-4'>
                     <div className='flex-col p-4 rounded-lg h-[350px] gap-y-4 bg-red-500'>
                         <div className='flex flex-col '>
